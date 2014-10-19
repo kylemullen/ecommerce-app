@@ -1,6 +1,8 @@
 <h1> <%= @product.name %> </h1>
 <h2><%= @product.description %></h>
-<h3>$<%= @product.price %> </h>
+<h3><%= @product.friendly_price %> </h>
+<h4><%= @product.sale_price %></h4>
+<h5><%= @product.sales_tax %></h5>
 <img src="<%= @product.photo %>" height="200" width="200" />
 <p><a href="/products/<%= @product.id %>/edit">
   	<p>Edit Item</p></a>
