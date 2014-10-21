@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
 		x = x.to_s
 		x += "0" if x.split(".")[1].length == 1
 		x = "$" + x
+	
 		return x
 
 	end

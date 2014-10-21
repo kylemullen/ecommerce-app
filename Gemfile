@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'seed_dump'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
-# Use sqlite3 as the database for Active Record
+gem 'quiet_assets', '~> 1.0.3'
 gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.2.0'
