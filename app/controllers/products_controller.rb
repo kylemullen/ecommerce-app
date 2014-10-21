@@ -1,8 +1,4 @@
 class ProductsController < ApplicationController
-	def index
-		@products = Product.all
-	end
-
 	def create
 		Product.create(params[:product])
 		#This is the shortcut for this^^^
@@ -13,13 +9,28 @@ class ProductsController < ApplicationController
 			#:price => params[:price])
 	end
 
+	def index
+		@products = Product.all
+		@products = @products.where("price < ?" , 2) if params[:products] == "sale_products"
+	end
+
+	#def random
+		#@product = Product.rand #if params[:product] == "random_product"
+		#render 'show'
+	
+
 	def edit
 		@product = Product.find_by(:id => params[:id])
 	end
 
 	def show
-		@product = Product.find_by(:id => params[:id])
+		if params[:id] == "random"
+			product = Product.all
+			@product = product.sample
 
+		else	
+			@product = Product.find_by(:id => params[:id])
+		end
 	end
 
 	def new

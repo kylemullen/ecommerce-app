@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
 	def friendly_price
 		x = price.round(2)
 		x = x.to_s
+		x += "0" if x.split(".")[1].length == 1
 		x = "$" + x
 		return x
 

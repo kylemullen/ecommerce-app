@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'products/:id/edit' => 'products#edit'
   patch 'products/:id' => 'products#update'
   delete 'products/:id' => 'products#destroy'
+  get 'products/random_product' => 'products#random'
 
   # 'item-page/:id' => 'products#show'
  
