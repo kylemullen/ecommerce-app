@@ -1,17 +1,18 @@
 class ProductsController < ApplicationController
 	def create
-		Product.create(params[:product])
-		flash[:success] = "Product Succesfully Added."
-		redirect_to '/'
-		#This is the shortcut for this^^^
+		product = Product.create(params[:product])
 		# Product.create(name => params[:product][:name].)
-
+		flash[:success] = "Product Succesfully Added."
+		redirect_to "/products/#{product.id}"
+	
 
 		#Product.create(:name => params[:name], :description => params[:description],
 			#:price => params[:price])
 	end
+
 	def kylestore
 	end
+
 	def index
 		@products = Product.all
 		@products = @products.where("price < ?" , 2) if params[:products] == "sale_products"
@@ -20,6 +21,7 @@ class ProductsController < ApplicationController
 	#def random
 		#@product = Product.rand #if params[:product] == "random_product"
 		#render 'show'
+	#end
 	
 
 	def edit
@@ -45,6 +47,8 @@ class ProductsController < ApplicationController
 		@product.update(params[:product])
 		flash[:info] = "Product Succesfully Modified."
 		redirect_to @product
+		#redirect_to "/products/#{@product.id}"
+		#another way to return to the product's individual page
 	end
 
 	def destroy
