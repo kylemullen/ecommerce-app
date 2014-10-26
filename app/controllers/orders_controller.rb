@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
 
 	def create
-		prodct = Product.find(params[:order][:product_id].to_i)
+		
+		product = Product.find(params[:order][:product_id])
 		total_price = product.price * params[:order][:quantity].to_i
 		@order = current_user.orders.create(params[:order].merge({:total => total_price}))
 
