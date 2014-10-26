@@ -5,6 +5,7 @@ gem 'seed_dump'
 gem 'rails', '4.1.5'
 gem 'quiet_assets', '~> 1.0.3'
 gem 'mysql2'
+gem 'devise'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '>= 3.2'

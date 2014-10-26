@@ -4,7 +4,7 @@ class CreateVendors < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :phone_number
-      t.string :vendor_id
+      t.integer :vendor_id
 
       t.timestamps
     end

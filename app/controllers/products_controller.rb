@@ -1,7 +1,10 @@
 class ProductsController < ApplicationController
 	def create
 		product = Product.create(params[:product])
-		# Product.create(name => params[:product][:name].)
+		# options = params[:product][:options].split(",")
+		# options.each do |options|
+		# 	ProductOption.create(:name => option.name, :product_id => product.id)
+		# end
 		flash[:success] = "Product Succesfully Added."
 		redirect_to "/products/#{product.id}"
 	
@@ -29,6 +32,8 @@ class ProductsController < ApplicationController
 	end
 
 	def show
+		@order = Order.new
+		
 		if params[:id] == "random"
 			product = Product.all
 			@product = product.sample
@@ -43,7 +48,7 @@ class ProductsController < ApplicationController
 	end
 
 	def update
-		@product= Product.find_by(:id => params[:id])
+		@product = Product.find_by(:id => params[:id])
 		@product.update(params[:product])
 		flash[:info] = "Product Succesfully Modified."
 		redirect_to @product
@@ -52,7 +57,7 @@ class ProductsController < ApplicationController
 	end
 
 	def destroy
-		@product= Product.find_by(:id => params[:id])
+		@product = Product.find_by(:id => params[:id])
 		@product.destroy
 		flash[:danger] = "Product Deleted."
 		redirect_to '/'

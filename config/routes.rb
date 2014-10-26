@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'products#index'
   get 'products/kylestore' => 'products#kylestore'
   get 'products' => 'products#new'
@@ -10,6 +11,9 @@ Rails.application.routes.draw do
   patch 'products/:id' => 'products#update'
   delete 'products/:id' => 'products#destroy'
   get 'products/random_product' => 'products#random'
+
+  post 'orders' => 'orders#create'
+  get 'orders' => 'orders#new'
 
   # 'item-page/:id' => 'products#show'
  

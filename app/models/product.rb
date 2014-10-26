@@ -1,5 +1,12 @@
 class Product < ActiveRecord::Base
 
+	belongs_to :vendor
+	has_many :orders
+	has_many :product_photos
+	has_many :product_options
+
+	attr_accessor :product_options_list, :product_photos_list
+
 	def friendly_price
 		x = price.round(2)
 		x = x.to_s
