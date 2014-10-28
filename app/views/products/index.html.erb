@@ -1,4 +1,13 @@
 <h1>Product List</h1>
+<h3>Product Categories</h2>
+<ul>
+  <% @categories.each do |category| %>
+    <li><a href="?category=<%= category.name %>"><%= category.name %></a></li>
+
+  <% end %>
+
+
+</ul>
 
 <div class="row">
 <% @products.each do |product| %>

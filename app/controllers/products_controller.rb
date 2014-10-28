@@ -19,6 +19,11 @@ class ProductsController < ApplicationController
 	def index
 		@products = Product.all
 		@products = @products.where("price < ?" , 2) if params[:products] == "sale_products"
+		@products = Product.joins(:categories).where("categories.name =?", params[:category]) if params[:category]
+
+		@categories = Category.all
+
+
 	end
 
 	#def random
@@ -33,7 +38,7 @@ class ProductsController < ApplicationController
 
 	def show
 		@order = Order.new
-		
+
 		if params[:id] == "random"
 			product = Product.all
 			@product = product.sample
