@@ -17,20 +17,32 @@
 <h5><%= @product.sales_tax %></h5>
 <img src="<%= @product.photo %>" height="200" width="200" />
 <p><a href="/products/<%= @product.id %>/edit">
+
+<% if (@current_user) && (@current_user.admin == true) %>
   	<p>Edit Item</p></a>
   	</br>
-</br>
-</br>
+	</br>
+	</br>
+<% end %>
 
-<%= form_for @order do |f| %>
+<% if user_signed_in? %>
 
-	<%= f.label :quantity %>
-	<%= f.text_field :quantity %>
+	<%= form_for @carted_product do |f| %>
+	
+		<%= f.label :quantity %>
+		<%= f.text_field :quantity %>
+		<%= f.hidden_field :product_id, value: @product.id %>
 
-	<%= f.hidden_field :product_id, value: @product.id %>
+		<%= f.submit "Add to Cart" %>
 
-	<%= f.submit "Buy Now!" %>
+	<% end %>
+
+<% else %>
+
+	<a href='/users/sign_in'>Please Sign In To Add to Cart</a>
 
 <% end %>
+</br>
+</br>
 
 <a href="/">Go home</a>

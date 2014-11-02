@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+	# before_action :authenticate_admin!, :only => [:edit, :destroy]
+
 	def create
 		product = Product.create(params[:product])
 		# options = params[:product][:options].split(",")
@@ -22,6 +24,7 @@ class ProductsController < ApplicationController
 		@products = Product.joins(:categories).where("categories.name =?", params[:category]) if params[:category]
 
 		@categories = Category.all
+		@current_user = current_user
 
 
 	end
@@ -33,11 +36,18 @@ class ProductsController < ApplicationController
 	
 
 	def edit
-		@product = Product.find_by(:id => params[:id])
+		if user_signed_in? && current_user.admin?
+			@product = Product.find_by(:id => params[:id])
+		else
+			flash[:message] = "Scumbag!"
+			redirect_to "/"
+		end
+
 	end
 
 	def show
-		@order = Order.new
+		@current_user = current_user
+		@carted_product = CartedProduct.new
 
 		if params[:id] == "random"
 			product = Product.all
@@ -68,4 +78,14 @@ class ProductsController < ApplicationController
 		redirect_to '/'
 
 	end
+
+	private
+
+	def authenticate_admin!
+		unless user_signed_in? && current_user.admin?
+			flash[:warning] = "Scumbag!!"	
+		end
+	end
+	
+		
 end

@@ -3,9 +3,13 @@ class Product < ActiveRecord::Base
 	has_many :categorized_products
 	has_many :categories, :through => :categorized_products
 
+	has_many :carted_products
+	has_many :orders, :through => :carted_products
+
+
 
 	belongs_to :vendor
-	has_many :orders
+
 	has_many :product_photos
 	has_many :product_options
 

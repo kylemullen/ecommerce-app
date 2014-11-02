@@ -19,8 +19,14 @@
   	<p><%= product.friendly_price %></p>
   	<p><a href="products/<%= product.id %>/edit">
   	<img src="<%= product.photo %>" height="200" width="200"/>
+
+<% if (@current_user) && (@current_user.admin == true) %>
+
   		<p>Edit Item</p></a>
   		<a data-method="delete" href="/products/<%=product.id %>" rel="nofollow">Delete Item</a>
+
+<% end %>
+
   	</br>
   	</br>
   	</br>
