@@ -1,7 +1,10 @@
 class OrdersController < ApplicationController
 
 	def create
-		@order = Order.create(params[:order])
+		@order = Order.create(order_params)
+
+		#@order = Order.create(params[:order])
+
 
 
 		# product = Product.find(params[:order][:product_id])
@@ -32,5 +35,12 @@ class OrdersController < ApplicationController
 
 	def index
 	end
+
+	private 
+
+	# def order_params
+ #    	return params.require(:order).permit(:user_id, :status, :total)
+ #  	end
+
 
 end

@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+group :development, :test do
+  gem 'rspec-rails'
+end
+
 gem 'pg', group: :production
 gem 'rails_12factor', group: :production
 gem 'seed_dump'

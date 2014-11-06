@@ -25,8 +25,8 @@ class Product < ActiveRecord::Base
 
 	end
 
-	def sale_price
-		if price > 30
+	def sale_message
+		if price >= 30
 			return "Sale Price"
 		else price < 30
 			return "DISCOUNT ITEM!"

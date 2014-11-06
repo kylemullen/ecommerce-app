@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 	# before_action :authenticate_admin!, :only => [:edit, :destroy]
 
 	def create
-		product = Product.create(params[:product])
+		product = Product.create(product_params)
 		# options = params[:product][:options].split(",")
 		# options.each do |options|
 		# 	ProductOption.create(:name => option.name, :product_id => product.id)
@@ -86,6 +86,15 @@ class ProductsController < ApplicationController
 			flash[:warning] = "Scumbag!!"	
 		end
 	end
+
+	private
+
+	def product_params
+		return params.require(:product).permit(:name, :description, :price, :photo, :vendor_id)
+
+	end
+
+
 	
 		
 end

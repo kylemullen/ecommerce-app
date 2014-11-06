@@ -8,7 +8,8 @@ class CartedProductsController < ApplicationController
 		else
 			@order = Order.create(:status => "cart", :user_id => current_user.id)
 		end
-		CartedProduct.create(params[:carted_product].merge(:order_id => @order.id))
+
+		CartedProduct.create(carted_product_params.merge(:order_id => @order.id))
 		flash[:success] = "Added to cart."
 		redirect_to "/"
 
@@ -32,10 +33,10 @@ class CartedProductsController < ApplicationController
 
 	end
 
+	private
+
+	def carted_product_params
+      return params.require(:carted_product).permit(:product_id, :quantity)
+	end
 	
-
-
-
-
-
 end
